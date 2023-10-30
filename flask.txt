@@ -1,0 +1,59 @@
+﻿python -m venv .env
+. .env/bin/activate
+pip install flask-appbuilder
+pip install werkzeug==2.3.7
+git clone https://github.com/dpgaspar/Flask-AppBuilder
+flask run
+flask fab create-admin
+pip freeze > requirements.txt
+cat requirements.txt 
+pip install pymysql
+pip freeze > requirements.txt
+mcedit Dockerfile
+docker build . -t myflask
+mcedit docker-compose.yml
+docker compose build
+docker compose up
+docker ps  
+docker stop
+docker exec -it xx
+
+flask fab create-admin
+mcedit config.py
+
+
+dockerfile
+FROM python:3.10.13-bookworm
+RUN mkdir /app
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+CMD ["flask","run","--host=0.0.0.0"]
+
+
+version: '3.1'
+
+services:
+  web:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_DATABASE: flask
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+
+
+
