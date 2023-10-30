@@ -16,7 +16,7 @@ docker compose build
 docker compose up
 docker ps  
 docker stop
-docker exec -it xx
+docker exec -it xx /bin/bash
 
 flask fab create-admin
 mcedit config.py
